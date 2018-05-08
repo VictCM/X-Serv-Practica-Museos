@@ -6,7 +6,8 @@ from django.template.loader import get_template
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Hola, no entiendo una puta mierda")
+    template = get_template('RedTie/index.html')
+    return HttpResponse(template.render())
 
 @csrf_exempt
 def milogin(request):
