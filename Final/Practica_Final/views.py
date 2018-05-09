@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
 from django.template.loader import get_template
+from .models import Museo, Comentario
+from .parsear import parsearXML
 # Create your views here.
 
 def home(request):
