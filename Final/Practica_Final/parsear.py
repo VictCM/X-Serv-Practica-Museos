@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from .models import Museo
-import xml.etree.ElementTree as ETree
+import xml.etree.ElementTree as ET
 import sys
 import traceback
 
 def parsearXML(file):
 
-    doc = ETree.parse('museos.xml')
+    doc = ET.parse('Practica_Final/museos.xml')
 
     #Cojo el primer elemento del árbol, la raiz
     raiz = doc.getroot()
@@ -27,59 +27,59 @@ def parsearXML(file):
     SaveObj(museo)
 
 def SaveObj(museo):
-        ID_ENTIDAD = museo.get('ID-ENTIDAD', None)
-        NOMBRE = museo('NOMBRE', None)
-        HORARIO = museo['HORARIO', None)
-        DESCRIPCION_ENTIDAD = museo('DESCRIPCION_ENTIDAD', None)
-        EQUIPAMIENTO = museo['EQUIPAMIENTO', None)
-        TRANSPORTE = museo['TRANSPORTE', None)
-        DESCRIPCION = museo['DESCRIPCION', None)
-        ACCESIBILIDAD = museo['ACCESIBILIDAD', None)
-        CONTENT_URL = museo['CONTENT_URL', None)
-        NOMBRE_VIA = museo['NOMBRE_VIA', None)
-        CLASE_VIAL = museo['CLASE_VIAL', None)
-        TIPO_NUM = museo['TIPO_NUM', None)
-        NUM = museo['NUM', None)
-        PLANTA = museo['PLANTA', None)
-        LOCALIDAD = museo['LOCALIDAD', None)
-        PROVINCIA = museo['PROVINCIA'. None)
-        CODIGO_POSTAL = museo['CODIGO_POSTAL'. None)
-        BARRIO = museo['BARRIO', None)
-        DISTRITO = museo['DISTRITO', None)
-        COORDENADA_X = museo['COORDENADA_X', None)
-        COORDENADA_Y = museo['COORDENADA_Y']
-        LATITUD = museo['LATITUD']
-        LONGITUD = museo['LONGITUD']
-        TELEFONO = museo['TELEFONO']
-        FAX = museo['FAX']
-        EMAIL = museo['EMAIL']
-        TIPO = museo['TIPO']
+    ID_ENTIDAD = museo.get('ID-ENTIDAD', "Null")
+    NOMBRE = museo.get('NOMBRE', "Null")
+    HORARIO =  museo.get('HORARIO', "Null")
+    DESCRIPCION_ENTIDAD =  museo.get('DESCRIPCION-ENTIDAD', "Null")
+    EQUIPAMIENTO =  museo.get('EQUIPAMIENTO',"Null")
+    TRANSPORTE =  museo.get('TRANSPORTE', "Null")
+    DESCRIPCION =  museo.get('DESCRIPCION', "Null")
+    ACCESIBILIDAD =  museo.get('ACCESIBILIDAD', "Null")
+    CONTENT_URL =  museo.get('CONTENT-URL', "Null")
+    NOMBRE_VIA =  museo.get('NOMBRE-VIA', "Null")
+    CLASE_VIAL =  museo.get('CLASE-VIAL', "Null")
+    TIPO_NUM =  museo.get('TIPO-NUM', "Null")
+    NUM =  museo.get('NUM', "Null")
+    PLANTA =  museo.get('PLANTA', "Null")
+    LOCALIDAD =  museo.get('LOCALIDAD', "Null")
+    PROVINCIA =  museo.get('PROVINCIA',"Null")
+    CODIGO_POSTAL =  museo.get('CODIGO-POSTAL',"Null")
+    BARRIO =  museo.get('BARRIO', "Null")
+    DISTRITO =  museo.get('DISTRITO', "Null")
+    COORDENADA_X =  museo.get('COORDENADA-X', "Null")
+    COORDENADA_Y =  museo.get('COORDENADA-Y', "Null")
+    LATITUD =  museo.get('LATITUD', "Null")
+    LONGITUD =  museo.get('LONGITUD', "Null")
+    TELEFONO =  museo.get('TELEFONO', "Null")
+    FAX =  museo.get('FAX', "Null")
+    EMAIL =  museo.get('EMAIL', "Null")
+    TIPO =  museo.get('TIPO', "Null")
 
     museo_object = Museo(ID_ENTIDAD = ID_ENTIDAD,
-                NOMBRE = NOMBRE,
-                HORARIO = HORARIO,
-                DESCRIPCION_ENTIDAD = DESCRIPCION_ENTIDAD,
-                EQUIPAMIENTO = EQUIPAMIENTO,
-                TRANSPORTE = TRANSPORTE,
-                DESCRIPCION = DESCRIPCION,
-                ACCESIBILIDAD = ACCESIBILIDAD,
-                CONTENT_URL = CONTENT_URL,
-                NOMBRE_VIA = NOMBRE_VIA,
-                CLASE_VIAL = CLASE_VIAL,
-                TIPO_NUM = TIPO_NUM,
-                NUM = NUM,
-                PLANTA = PLANTA,
-                LOCALIDAD = LOCALIDAD,
-                PROVINCIA = PROVINCIA,
-                CODIGO_POSTAL = CODIGO_POSTAL,
-                BARRIO = BARRIO,
-                DISTRITO = DISTRITO,
-                COORDENADA_X = COORDENADA_X,
-                COORDENADA_Y = COORDENADA_Y,
-                LATITUD = LATITUD,
-                LONGITUD = LONGITUD,
-                TELEFONO = TELEFONO,
-                FAX = FAX,
-                EMAIL = EMAIL,
-                TIPO = TIPO)
+                        NOMBRE = NOMBRE,
+                        HORARIO = HORARIO,
+                        DESCRIPCION_ENTIDAD = DESCRIPCION_ENTIDAD,
+                        EQUIPAMIENTO = EQUIPAMIENTO,
+                        TRANSPORTE = TRANSPORTE,
+                        DESCRIPCION = DESCRIPCION,
+                        ACCESIBILIDAD = ACCESIBILIDAD,
+                        CONTENT_URL = CONTENT_URL,
+                        NOMBRE_VIA = NOMBRE_VIA,
+                        CLASE_VIAL = CLASE_VIAL,
+                        TIPO_NUM = TIPO_NUM,
+                        NUM = NUM,
+                        PLANTA = PLANTA,
+                        LOCALIDAD = LOCALIDAD,
+                        PROVINCIA = PROVINCIA,
+                        CODIGO_POSTAL = CODIGO_POSTAL,
+                        BARRIO = BARRIO,
+                        DISTRITO = DISTRITO,
+                        COORDENADA_X = COORDENADA_X,
+                        COORDENADA_Y = COORDENADA_Y,
+                        LATITUD = LATITUD,
+                        LONGITUD = LONGITUD,
+                        TELEFONO = TELEFONO,
+                        FAX = FAX,
+                        EMAIL = EMAIL,
+                        TIPO = TIPO)
     museo_object.save()
