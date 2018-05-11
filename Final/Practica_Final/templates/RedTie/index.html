@@ -21,7 +21,7 @@
 					Phone: 666-666-666<br />
 				</div>
 				<div id="toplinks" class="smallgraytext">
-					<a href="#">Home</a> | <a href="#">Sitemap</a> | <a href="#">Contact Us</a>
+					<a href="http://www.didthanoskill.me/">Are you dead?</a> | <a href="https://www.google.es/search?q=polvo&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiVjPmmhP7aAhUBXBQKHRBCASgQ_AUICigB&biw=1231&bih=934">The Avengers</a> | <a href="http://as01.epimg.net/epik/imagenes/2018/04/04/portada/1522831716_650516_1522831975_noticia_normal.jpg">Basura</a>
 				</div>
 			</div>
 			<div id="contenttext">
@@ -38,10 +38,14 @@
 			</div>
 			<div id="leftpanel">
 				<div align="justify" class="graypanel">
-					{% block msg %}
+					{% block user %}
+					<h2>Vengador activo: </h2>
+					    {{ user|safe }}
+					{% endblock %}
+				</div>
+				<div align="justify" class="graypanel">
 					<h2>Mensaje de SHIELD: </h2>
 					    {{ msg|safe }}
-					{% endblock %}
 				</div>
 			</div>
 

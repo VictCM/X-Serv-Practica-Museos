@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^logout', logout, {'next_page': '/'}),
     url(r'^login', views.login),
+    url(r'^registro', views.Registro, name="Crear usuario"),
+    url(r'^(.*)$', views.Usuario, name="Pagina de usuario"),
 ]

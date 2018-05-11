@@ -31,10 +31,6 @@ class Museo(models.Model):
     EMAIL = models.TextField(default="Null")
     TIPO = models.CharField(max_length=100, default="Null")
 
-    Name = models.CharField(max_length=100, default="Null")
-    Dir = models.CharField(max_length=100, default="Null")
-    Info = models.TextField(default="Null")
-
     def __str__(self):
         return self.NOMBRE
 
@@ -45,3 +41,7 @@ class Comentario(models.Model):
     FECHA = models.DateTimeField(auto_now = True)
     def __str__(self):
         return self.TEXTO
+
+class Pag_Usuario(models.Model):
+    Usuario = models.CharField(max_length=100, default="Null")
+    Museos = models.OneToManyField(Museo)
