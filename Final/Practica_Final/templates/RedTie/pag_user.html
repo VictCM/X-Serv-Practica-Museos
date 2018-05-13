@@ -27,26 +27,20 @@
 			</div>
 			<div id="contenttext">
 				<div style="padding:10px">
-					<span class="titletext">Welcome to Thanos Page</span>
+					<span class="titletext">Página del vengador {{user|safe}}</span>
 					</div>
+					{{titulo|safe}}
 					<div class="bodytext" style="padding:12px;" align="justify">
-					<strong><h1>Long live to Thanos!</strong><br></h1>
-					<br />"The end is near."<br /><br />
-					<br />"Humans. They are not the cowering wretches we were promised. They stand. They are unruly, and therefore cannot be ruled. To challenge them is to court...Death."<br />
-					<br /><br />
-					<br />"When I'm done, half of humanity will still exist. Perfectly balanced, as all things should be. I hope they remember you."<br />
+					<strong><h1>Museo bajo su protección:</strong><br></h1>
+					<br />{{ museos|safe}}<br /><br />
 				</div>
 			</div>
 			<div id="leftpanel">
 				<div align="justify" class="graypanel">
-					{% block user %}
-					<h2>Vengador activo: </h2>
-					    {{ user|safe }}
+					{% block peticion %}
+					<h2>Peticion: </h2>
+					    {{ peticion|safe }}
 					{% endblock %}
-				</div>
-				<div align="justify" class="graypanel">
-					<h2>Mensaje de SHIELD: </h2>
-					    {{ msg|safe }}
 				</div>
 			</div>
 

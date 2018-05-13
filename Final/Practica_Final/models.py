@@ -41,7 +41,14 @@ class Comentario(models.Model):
     FECHA = models.DateTimeField(auto_now = True)
     def __str__(self):
         return self.TEXTO
+        
+class Museo_Usuario(models.Model):
+    MUSEO = models.ForeignKey(Museo)
+    FECHA = models.TextField(default = "Null")
 
 class Pag_Usuario(models.Model):
-    Usuario = models.CharField(max_length=100, default="Null")
-    Museos = models.OneToManyField(Museo)
+    USUARIO = models.TextField(default="Null")
+    TITULO = models.TextField(default ="Null")
+    MUSEOS = models.ManyToManyField(Museo_Usuario)
+
+
