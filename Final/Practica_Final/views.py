@@ -62,7 +62,7 @@ def home(request):
         else:
             users = "Solo han venido: <br>"
             for user in DB_Users:
-                users += user.username + "<br>"
+                users += "<a href=/" + user.username + ">" + user.username + "</a><br>"
     elif request.method == "POST":
         opcion = request.POST['opcion']
         if opcion == "1":
@@ -165,9 +165,9 @@ def Pagina_Usuario(request, user):
             museo = Museo.objects.get(ID_ENTIDAD = ID_museo)
             fecha = str(time.ctime())
             pag_object = Pag_Usuario.objects.get(USUARIO = user)
-            user_museo_object = Museo_Usuario(MUSEO = museo, FECHA = fecha)  ###problema aqui
+            user_museo_object = Museo_Usuario(MUSEO = museo, FECHA = fecha)
             user_museo_object.save()
-            pag_object.MUSEOS = user_museo_object
+            pag_object.MUSEOS.add(user_museo_object)
             pag_object.save()
         else:
             respuesta = "Method not Allowed"
@@ -197,21 +197,35 @@ def Añadir(request):
             form1 += "value='2'><input type= 'submit' value='enviar'>"
             form1 += "</form>"
 
-
-def Usuario_XML(request):
-    pag = Pag_Usuario.objects.get(USUARIO=user)
+@csrf_exempt
+def XML_Usuario(request, user):
     if request.method == "GET":
-        museos = pag.MUSEOS.all()
-        if len(museos) == 0:
-            lista_museos = "No hay ningun museo añadido"
-            form1 = " "
+        if request.user.is_authenticated():
+            pag = Pag_Usuario.objects.get(USUARIO=request.user.username)
+            user = request.user.username
+            titulo = pag.TITULO
+            selec_museos = pag.MUSEOS.all()
+            if len(selec_museos) == 0:
+                museos = "No hay ningun museo añadido"
+                form1 = " "
+            else:
+                museos = "Los museos añadidos son: <br>"
+                for museo in selec_museos:
+                    museos += "<a href=" + museo.MUSEO.CONTENT_URL + ">" + museo.MUSEO.NOMBRE + "</a><br>"
+                    museos += "Dirección: " + museo.MUSEO.NOMBRE_VIA + " "
+                    museos += museo.MUSEO.CLASE_VIAL + " " + museo.MUSEO.TIPO_NUM + " "
+                    museos += museo.MUSEO.NUM + ", " + museo.MUSEO.PLANTA + ", "
+                    museos += museo.MUSEO.LOCALIDAD + ", " + museo.MUSEO.PROVINCIA + ", "
+                    museos += museo.MUSEO.CODIGO_POSTAL + ", "+ museo.MUSEO.BARRIO + ", "
+                    museos += museo.MUSEO.DISTRITO + "<br>"
+                    museos += "Añadido el: " + museo.FECHA + "<br><br>"
         else:
-            form1 = "Los museos añadidos son: <br>"
-            for museo in museos:
-                form1 += "<a href=" + museo.CONTENT_URL + ">" + museo.NOMBRE + "</a><br>"
-                form1 += "Dirección: " + museo.NOMBRE_VIA + " "
-                form1 += museo.CLASE_VIAL + " " + museo.TIPO_NUM + " "
-                form1 += museo.NUM + ", " + museo.PLANTA + ", "
-                form1 += museo.LOCALIDAD + ", " + museo.PROVINCIA + ", "
-                form1 += museo.CODIGO_POSTAL + ", "+ museo.BARRIO + ", "
-                form1 += museo.DISTRITO + "<br><br>"
+            user = " nadie"
+            titulo = "Login needed <br>"
+            museos = "No estas logueado, para añadir museos a tu página deberás hacerlo."
+    else:
+        respuesta = "Method not Allowed"
+
+    template = get_template('RedTie/pag_user.html')
+    c = Context({'user': user, 'titulo': titulo,'museos': museos, 'peticion': " ", 'login': Login_info(request)})
+    return HttpResponse(template.render(c))

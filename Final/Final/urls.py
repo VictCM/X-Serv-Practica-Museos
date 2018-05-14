@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^logout', logout, {'next_page': '/'}),
     url(r'^login', views.Login),
     url(r'^registro', views.Registro, name="Crear usuario"),
-    url(r'^(.*)$', views.Pagina_Usuario, name="Pagina de usuario"),
+    url(r'^(.*)/XML$', views.XML_Usuario, name="Museos del usuario"),
+    url(r'^(.*)$', views.Pagina_Usuario, name="Pagina de usuario")
+
 ]
