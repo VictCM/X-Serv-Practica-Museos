@@ -13,7 +13,7 @@ margin: 0em;
 
 body
 {
-background: #000000 url('images/bg1.jpg');
+background: #003450 url('bg1.jpg');
 padding: 35px 0px 35px 0px;
 }
 
@@ -60,14 +60,14 @@ h3
 {
 font-size: 1.7em;
 padding-right: 34px;
-background-image: url('images/db1.gif');
+background-image: url('db1.gif');
 }
 
 h4
 {
 font-size: 1.2em;
 padding-right: 28px;
-background-image: url('images/db2.gif');
+background-image: url('db2.gif');
 }
 
 .contentarea
@@ -97,7 +97,7 @@ margin: 0em 0em 1.8em 1.8em;
 .divider1
 {
 position: relative;
-background: #fff url('images/border2.gif') repeat-x;
+background: #fff url('border2.gif') repeat-x;
 height: 14px;
 margin: 2.0em 0em 1.5em 0em;
 clear: both;
@@ -139,23 +139,23 @@ padding: 0em 1.0em 0em 20px;
 
 .post ul.controls li a.printerfriendly
 {
-background-image: url('images/icon-printerfriendly.gif');
+background-image: url('icon-printerfriendly.gif');
 }
 
 .post ul.controls li a.comments
 {
-background-image: url('images/icon-comments.gif');
+background-image: url('icon-comments.gif');
 }
 
 .post ul.controls li a.more
 {
-background-image: url('images/icon-more.gif');
+background-image: url('icon-more.gif');
 }
 
 .box
 {
 position: relative;
-background: #FDFCF6 url('images/boxbg.gif') repeat-x;
+background: #FDFCF6 url('boxbg.gif') repeat-x;
 left: -1.5em;
 top: -1.5em;
 padding: 1.5em;
@@ -180,7 +180,7 @@ top: 0px;
 left: 0px;
 width: 100%;
 height: 275px;
-background: #fff url('images/bg2.jpg') repeat-x;
+background: #fff url('bg2.jpg') repeat-x;
 z-index: 1;
 }
 
@@ -193,7 +193,7 @@ position: relative;
 	(so it'll take up 82% of the browser window's width). You can set it to a different percentage
 	value (70%, 90%, etc.) or even a pixel value (760px, 800px, etc.) to enforce a fixed width.
 */
-width: 82%;
+width: 90%;
 border: solid 7px #fff;
 background-color: #fff;
 margin: 0 auto;
@@ -203,8 +203,8 @@ margin: 0 auto;
 {
 position: relative;
 width: 100%;
-height: 9.0em;
-background: #2B2B2B url('images/topbg.gif') repeat-x;
+height: 70px;
+background: #2B2B2B url('topbg.gif') repeat-x;
 margin-bottom: 2px;
 }
 
@@ -256,7 +256,7 @@ width: 10.0em;
 
 #search input.submit
 {
-background: #939B00 url('images/buttonbg.gif') repeat-x;
+background: #939B00 url('buttonbg.gif') repeat-x;
 border: solid 1px #5F6800;
 font-weight: bold;
 padding: 0.25em;
@@ -266,17 +266,27 @@ vertical-align: middle;
 }
 
 #headerpic
+.banner
 {
-position: relative;
-height: 109px;
-background: #fff url('images/hdrpic.jpg') no-repeat top left;
-margin-bottom: 2px;
+    display: inline-block;
+    font-size: inherit;
+}
+.banner img{
+    height: auto;
+    width: 100%;
+}
+.login
+{
+    float:right;
+    width:100px;
+    height:50px;
+    margin: 30px 100px 0 0;
 }
 
 #menu
 {
 position: relative;
-background: #7F8400 url('images/menubg.gif') repeat-x top left;
+background: #7F8400 url('menubg.gif') repeat-x top left;
 height: 3.5em;
 padding: 0em 1.0em 0em 1.0em;
 margin-bottom: 2px;
@@ -308,12 +318,12 @@ text-decoration: underline;
 
 #menu ul li a.active
 {
-background: #7F8400 url('images/menuactive.gif') repeat-x top left;
+background: #7F8400 url('menuactive.gif') repeat-x top left;
 }
 
 #menubottom
 {
-background: #fff url('images/border1.gif') repeat-x;
+background: #fff url('border1.gif') repeat-x;
 height: 14px;
 margin-bottom: 1.5em;
 }
@@ -348,7 +358,7 @@ position: relative;
 height: 2.0em;
 clear: both;
 padding-top: 5.0em;
-background: #fff url('images/border2.gif') repeat-x 0em 2.5em;
+background: #fff url('border2.gif') repeat-x 0em 2.5em;
 font-size: 0.8em;
 }
 

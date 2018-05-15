@@ -26,9 +26,9 @@ def Login_info(request):
 
 @csrf_exempt
 def Login(request):
-    user = request.POST['user']
+    username = request.POST['user']
     password = request.POST['password']
-    user = authenticate(username=user, password=password)
+    user = authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
     return redirect("/")
@@ -39,8 +39,9 @@ def home(request):
     if request.method == "GET":
         DB_Museos = Museo.objects.all()
         DB_Users = User.objects.all()
+        form1 = "<h2>Mensaje de SHIELD: </h2> <br>"
         if len(DB_Museos) == 0: #Significa que la base de datos esta vacia
-            form1 = "No hay datos disponibles en la base de datos"
+            form1 += "No hay datos disponibles en la base de datos"
             # POST para cargar los datos
             form1 += "<br>¿Actualizar Datos?<br>"
             form1 += "<form action='/' method='post'>"
@@ -48,7 +49,7 @@ def home(request):
             form1 += "<input type= 'submit' value='Actualizar'>"
             form1 += "</form>"
         else:
-            form1 = "<br>Los museos para esconderse de Thanos:<br><br>"
+            form1 += "<br>Los museos para esconderse de Thanos:<br><br>"
             for museo in DB_Museos:
                 form1 += "<a href=" + museo.CONTENT_URL + ">" + museo.NOMBRE + "</a><br>"
                 form1 += "Dirección: " + museo.NOMBRE_VIA + " "
@@ -57,6 +58,7 @@ def home(request):
                 form1 += museo.LOCALIDAD + ", " + museo.PROVINCIA + ", "
                 form1 += museo.CODIGO_POSTAL + ", "+ museo.BARRIO + ", "
                 form1 += museo.DISTRITO + "<br><br>"
+        user = "<h2> Vengadores activos </h2> <br>"
         if len(DB_Users) == 0:
             users = "No se ha dado con ningún Vengador"
         else:
@@ -70,7 +72,7 @@ def home(request):
             parsearXML('museos.xml')
             return redirect("/")
 
-    template = get_template('RedTie/index.html')
+    template = get_template('index.html')
     c = Context({'msg': form1 ,'user': users, 'login': Login_info(request)})
     return HttpResponse(template.render(c))
 
@@ -102,7 +104,7 @@ def Registro(request):
     else:
         form1 = "Method not allowed"
     print(form1)
-    template = get_template('RedTie/index.html')
+    template = get_template('index.html')
     c = Context({'user': form1, 'login': Login_info(request)})
     return HttpResponse(template.render(c))
 
@@ -176,9 +178,9 @@ def Pagina_Usuario(request, user):
     else:
         respuesta = "Method not Allowed"
 
-    template = get_template('RedTie/pag_user.html')
+    template = get_template('index.html')
     c = Context({'user': user, 'titulo': pag.TITULO,'museos': museos, 'peticion': form1, 'login': Login_info(request)})
-    return HttpResponse(template.render(c))
+    return HttpResponse(template.render())
 
 def Añadir(request):
     if request.method == "GET":
@@ -226,6 +228,6 @@ def XML_Usuario(request, user):
     else:
         respuesta = "Method not Allowed"
 
-    template = get_template('RedTie/pag_user.html')
+    template = get_template('index.html')
     c = Context({'user': user, 'titulo': titulo,'museos': museos, 'peticion': " ", 'login': Login_info(request)})
-    return HttpResponse(template.render(c))
+    return HttpResponse(template.render())
