@@ -73,17 +73,16 @@
 				<!-- Primary content area start -->
 
 				<div class="post">
-					{{ user|safe }}
+					<center><h2>Museos</h2></center>
 				</div>
 
 				<div class="divider2"></div>
 
 				<div class="post">
-					    {{ msg|safe }}
+					 <br />{{ museos|safe}}<br /><br />
 				</div>
 
 				<div class="divider2"></div>
-
 				<!-- Primary content area end -->
 			</div>
 		</div>
@@ -95,11 +94,10 @@
 
 			<!-- HINT: Set any div's class to "box" to encapsulate it in (you guessed it) a box -->
 			<div class="box">
-				<h4>Blandit Veroeros</h4>
-				<div class="contentarea">
-					<img src="{% static 'images/pic2.jpg' %}" class="left" alt="Random foliage" />
-					<p>Sed etiam et lorem ipsum nulla vero et lobortis felis sed etiam. Lorem ipsum sit amet dolore. Nulla facilisi. Sed tortor. Aenean felis. Quisque eros etiam <a href="#">sed commodo</a>.</p>
-				</div>
+				{% block peticion %}
+					<h2>Peticion: </h2>
+					    {{ peticion|safe }}
+					{% endblock %}
 			</div>
 
 			<div>

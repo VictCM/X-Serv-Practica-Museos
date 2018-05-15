@@ -30,6 +30,7 @@ class Museo(models.Model):
     FAX = models.TextField(default="Null")
     EMAIL = models.TextField(default="Null")
     TIPO = models.CharField(max_length=100, default="Null")
+    NUM_COMENTS = models.IntegerField( default=0)
 
     def __str__(self):
         return self.NOMBRE
