@@ -72,17 +72,11 @@
 			<div id="primarycontent">
 				<!-- Primary content area start -->
 
-				<div class="post">
-					{{ user|safe }}
-				</div>
-
 				<div class="divider2"></div>
 
 				<div class="post">
 					    {{ msg|safe }}
 				</div>
-
-				<div class="divider2"></div>
 
 				<!-- Primary content area end -->
 			</div>
@@ -95,30 +89,11 @@
 
 			<!-- HINT: Set any div's class to "box" to encapsulate it in (you guessed it) a box -->
 			<div class="box">
-				<h4>Blandit Veroeros</h4>
-				<div class="contentarea">
-					<img src="{% static 'images/pic2.jpg' %}" class="left" alt="Random foliage" />
-					<p>Sed etiam et lorem ipsum nulla vero et lobortis felis sed etiam. Lorem ipsum sit amet dolore. Nulla facilisi. Sed tortor. Aenean felis. Quisque eros etiam <a href="#">sed commodo</a>.</p>
-				</div>
+				{{peticion|safe}}
 			</div>
 
 			<div>
-				<h4>Nullam Dolore</h4>
-				<div class="contentarea">
-					<ul class="linklist">
-						<li><a href="#">Volutpat at varius sed</a></li>
-						<li><a href="#">Sollicitudin et arcu</a></li>
-						<li><a href="#">Vivamus viverra nullam</a></li>
-						<li><a href="#">Turpis vestibulum</a></li>
-						<li><a href="#">Sed etiam lorem ipsum</a></li>
-						<li><a href="#">Sit amet dolore nulla</a></li>
-						<li><a href="#">Facilisi sed tortor</a></li>
-						<li><a href="#">Aenean felis quisque</a></li>
-						<li><a href="#">Eros cras lobortis vel</a></li>
-						<li><a href="#">Purus in eget odio sapien</a></li>
-						<li><a href="#">Adipiscing blandit</a></li>
-					</ul>
-				</div>
+				{{users_pag|safe}}
 			</div>
 
 			<!-- Secondary content area end -->

@@ -10,6 +10,8 @@ from django.template import Context
 import time
 # Create your views here.
 
+acces = 0
+
 def Login_info(request):
     if request.user.is_authenticated():
         log = "<p>Logged in as " + request.user.username
@@ -35,11 +37,33 @@ def Login(request):
 
 @csrf_exempt
 def home(request):
-
     if request.method == "GET":
-        DB_Museos = Museo.objects.all()
-        DB_Users = User.objects.all()
-        DB_Comments = Comentario.objects.all()
+        peticion = "No hay ningun museo todavía"
+        if acces ==0:
+            DB_Museos = Museo.objects.all()
+            Museos_Con_Coment = Museo.objects.order_by('-NUM_COMENTS')
+            TOP5Museos_Con_Coment = Museos_Con_Coment[:5]
+            DB_Users_Pag = Pag_Usuario.objects.all()
+            DB_Comments = Comentario.objects.all()
+
+            peticion = "<br>¿Mostras solo accesibles?<br>"
+            peticion += "<form action='/' method='post'>"
+            peticion += "<input type= 'hidden' name='opcion' value='2'>"
+            peticion += "<input type= 'submit' value='Ir'>"
+            peticion += "</form>"
+        if acces == 1:
+            DB_Museos = Museo.objects.all()
+            DB_Museos = DB_Museos.filter(ACCESIBILIDAD = "1")
+            Museos_Con_Coment = Museo.objects.order_by('-NUM_COMENTS').filter(ACCESIBILIDAD = "1")
+            TOP5Museos_Con_Coment = Museos_Con_Coment[:5]
+            DB_Users_Pag = Pag_Usuario.objects.all()
+            DB_Comments = Comentario.objects.filter(MUSEO__ACCESIBILIDAD = "1" )
+
+            peticion = "Mostrando solo los museos accesibles <br>¿Ver todos?<br>"
+            peticion += "<form action='/' method='post'>"
+            peticion += "<input type= 'hidden' name='opcion' value='3'>"
+            peticion += "<input type= 'submit' value='Ir'>"
+            peticion += "</form>"
         info = "<h2>Mensaje de SHIELD: </h2> <br>"
         if len(DB_Museos) == 0: #Significa que la base de datos esta vacia
             info += "No hay datos disponibles en la base de datos"
@@ -49,34 +73,40 @@ def home(request):
             info += "<input type= 'hidden' name='opcion' value='1'>"
             info += "<input type= 'submit' value='Actualizar'>"
             info += "</form>"
+
         else:
             if len(DB_Comments) == 0:
                 info += "No hay comentarios para ningún museo"
             else:
-                Museos_Con_Coment = Museo.objects.order_by('-NUM_COMENTS')
-                for museo in Museos_Con_Coment:
+                for museo in TOP5Museos_Con_Coment:
                     if museo.NUM_COMENTS !=0:
                         info += "<a href=" + museo.CONTENT_URL + ">" + museo.NOMBRE +"</a><br>"
                         info += "<h4>Dirección: </h4>" + museo.NOMBRE_VIA + " " + museo.CLASE_VIAL + " " + museo.TIPO_NUM
                         info += " " + museo.NUM + ", " + museo.PLANTA + ", " +museo.LOCALIDAD + ", " + museo.PROVINCIA + ", "
-                        info += museo.CODIGO_POSTAL + ", "+ museo.BARRIO + ", " + museo.DISTRITO + "<br>" 
+                        info += museo.CODIGO_POSTAL + ", "+ museo.BARRIO + ", " + museo.DISTRITO + "<br>"
                         info += "<a href=/museos/" + museo.ID_ENTIDAD + ">Página del museo</a><br><br>"
-        user = "<h2> Vengadores activos </h2> <br>"
-        if len(DB_Users) == 0:
-            users = "No se ha dado con ningún Vengador"
+        users_pag = "<h4>Paginas de los usuarios registrados: </h4><br>"
+        if len(DB_Users_Pag) == 0:
+            users_pag = "Ningun usuario registrado."
         else:
-            users = "Solo han venido: <br>"
-            for user in DB_Users:
-                users += "<a href=/" + user.username + ">" + user.username + "</a><br>"
+            for pag in DB_Users_Pag:
+                users_pag += "<a href=/" + pag.USUARIO + ">" + pag.TITULO + "</a><br>"
     elif request.method == "POST":
         opcion = request.POST['opcion']
         if opcion == "1":
             # he pinchado sobre Actualizar datos
             parsearXML('museos.xml')
             return redirect("/")
-
+        elif opcion == "2":
+            global acces
+            acces = 1
+            return redirect("/")
+        elif opcion == "3":
+            global acces
+            acces = 0
+            return redirect("/")
     template = get_template('index.html')
-    c = Context({'msg': info ,'user': users, 'login': Login_info(request), 
+    c = Context({'msg': info ,'users_pag': users_pag, 'login': Login_info(request), 'peticion': peticion,
                     'propietary':request.user.username})
     return HttpResponse(template.render(c))
 
@@ -109,21 +139,23 @@ def Registro(request):
         form1 = "Method not allowed"
     print(form1)
     template = get_template('index.html')
-    c = Context({'user': form1, 'login': Login_info(request)})
+    c = Context({'msg': form1, 'login': Login_info(request)})
     return HttpResponse(template.render(c))
 
 @csrf_exempt
 def Pagina_Usuario(request, user):
-    print(user)
-    DB_Museos = Museo.objects.all()
+
     DB_Users = User.objects.all()
-    pag = Pag_Usuario.objects.get(USUARIO=user)
+    DB_Users_Pag = Pag_Usuario.objects.get(USUARIO = user)
     if request.method == "GET":
-        titulo = pag.TITULO
-        selec_museos = pag.MUSEOS.all()
+        titulo = DB_Users_Pag.TITULO
+        selec_museos = DB_Users_Pag.MUSEOS.all()
+        if acces == 1:
+            print("Access 1")
+            select_museos = DB_Users_Pag.MUSEOS.all().filter(MUSEO__ACCESIBILIDAD = "1")
+            print(select_museos)
         if len(selec_museos) == 0:
             museos = "No hay ningun museo añadido"
-            form1 = " "
         else:
             museos = "Los museos añadidos son: <br>"
             for museo in selec_museos:
@@ -137,15 +169,15 @@ def Pagina_Usuario(request, user):
                 museos += "Añadido el: " + museo.FECHA + "<br><br>"
         if user == request.user.username:
             # formulario para Cambiar titulo
-            form1 = "<br>¿Cambiar Titulo? "
-            form1 += "<form action='" + user + "' method='post'>"
-            form1 += "Titulo: <input type= 'text' name='titulo'>"
-            form1 += "<input type= 'hidden' name='opcion' value='2'>"
-            form1 += "<input type= 'submit' value='enviar'>"
-            form1 += "</form>"
+            peticion = "<br>¿Cambiar Titulo? "
+            peticion += "<form action='" + user + "' method='post'>"
+            peticion += "Titulo: <input type= 'text' name='titulo'>"
+            peticion += "<input type= 'hidden' name='opcion' value='2'>"
+            peticion += "<input type= 'submit' value='enviar'>"
+            peticion += "</form>"
             # Muestro todos los museos y doy la opcion de añadirlos
         else:
-            form1 = "No eres propietario de la pagina"
+            peticion = "No eres propietario de la pagina"
     elif request.method == "POST":
         opcion = request.POST['opcion']
         if opcion == "1":
@@ -153,28 +185,17 @@ def Pagina_Usuario(request, user):
             parsearXML('museos.xml')
         elif opcion == "2":
             titulo = request.POST['titulo']
-            print(titulo + "en Cambio de pag")
             pag_object = Pag_Usuario.objects.get(USUARIO = user)
             pag_object.TITULO = titulo
-            pag_object.save()
-        elif opcion == "3":
-            ID_museo = request.POST['museo']
-            print(ID_museo)
-            museo = Museo.objects.get(ID_ENTIDAD = ID_museo)
-            fecha = str(time.ctime())
-            pag_object = Pag_Usuario.objects.get(USUARIO = user)
-            user_museo_object = Museo_Usuario(MUSEO = museo, FECHA = fecha)
-            user_museo_object.save()
-            pag_object.MUSEOS.add(user_museo_object)
             pag_object.save()
 
         url = "http://localhost:1234/" + user
         return redirect(url)
     else:
-        respuesta = "Method not Allowed"
+        error = "Method not Allowed"
 
     template = get_template('pag_user.html')
-    c = Context({'user': user, 'titulo': pag.TITULO,'museos': museos, 'peticion': form1, 
+    c = Context({'user': user, 'titulo': DB_Users_Pag.TITULO,'museos': museos, 'peticion': peticion,
                     'login': Login_info(request), 'propietary':request.user.username})
     return HttpResponse(template.render(c))
 
@@ -212,7 +233,7 @@ def Pagina_Museos(request):
             distritos = DB_Museos.values_list('DISTRITO', flat=True).distinct()
             peticion = "Seleccionar distrito: <br>"
             peticion += "<form action='/museos/' method='post'>"
-            peticion += "<select name='Distrito_Elegido'>"
+            peticion += "<select name='Distrito'>"
             for distrito in distritos:
                 peticion += "<option value='" + distrito + "'>" + distrito
                 peticion += "</option>"
