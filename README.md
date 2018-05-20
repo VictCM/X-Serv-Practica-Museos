@@ -19,4 +19,4 @@ Si no se esta logueado algunas funciones de la página no estarán disponibles, 
 - Se ha añadido el favicon a la web
 
 ### URL del v´ıdeo demostraci´on de la funcionalidad b´asica
-https://www.youtube.com/watch?v=2fUfkUpLRv4&t=39s
+https://youtu.be/2fUfkUpLRv4
