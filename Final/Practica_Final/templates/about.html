@@ -8,14 +8,12 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" type="text/css" href="{% static 'images/default.css' %}" />
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
 
 <div id="upbg"></div>
 
-<div id="outer" >
+<div id="outer">
 
 
 	<div id="header">
@@ -27,7 +25,7 @@
 
 	<div id="headerpic">
 		<div class="banner">
-			 <center><img src="{% static 'images/banner_museos.png' %}"/></center>
+			 <img src="{% static 'images/banner_museos.png' %}"/>
 		</div>
 		<div class = "login">
 			<h4>{{ login|safe }}</h4>
@@ -47,18 +45,17 @@
 
 	<div id="content">
 
-
 		<!-- Primary content: Stuff that goes in the primary content column (by default, the left column) -->
 		<div id="primarycontainer" style = "background-color:{{ estilo_color }}">
 			<div id="primarycontent">
 				<!-- Primary content area start -->
 
-				<div class="divider2"></div>
-
-				<div class="post"  style ="font-size: {{ estilo_tamaño }} ">
-					    {{ msg|safe }}
+				<div class="post" style ="font-size: {{ estilo_tamaño }} ">
+					 <h2>Sobre la página web: </h2>
+					 <br/>{{ msg|safe}}<br /><br />
 				</div>
 
+				<div class="divider2"></div>
 				<!-- Primary content area end -->
 			</div>
 		</div>
@@ -66,14 +63,6 @@
 
 		<!-- Secondary content: Stuff that goes in the secondary content column (by default, the narrower right column) -->
 		<div id="secondarycontent">
-			<!-- Secondary content area start -->
-
-			<!-- HINT: Set any div's class to "box" to encapsulate it in (you guessed it) a box -->
-			<div class="box">
-				{{peticion|safe}}
-			<br><br>
-				{{users_pag|safe}}
-			</div>
 
 			<!-- Secondary content area end -->
 		</div>

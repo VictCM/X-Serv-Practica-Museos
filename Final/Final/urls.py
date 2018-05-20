@@ -18,14 +18,15 @@ from Practica_Final import views
 from django.contrib.auth.views import logout
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    url(r'^$', views.home, name="home"),
+    url(r'^about', views.About, name= "about de la página"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^logout', logout, {'next_page': '/'}),
     url(r'^login', views.Login),
     url(r'^registro', views.Registro, name="Crear usuario"),
-    url(r'^museos/(\d+)$', views.Pagina_Museo, name="Pagina museo"),
-    url(r'^museos$', views.Pagina_Museos, name="Pagina museos"),
-    url(r'^(.*)/XML$', views.XML_Usuario, name="Museos del usuario"),
-    url(r'^(.*)$', views.Pagina_Usuario, name="Pagina de usuario")
+    url(r'^museos/(\d+)$', views.Pagina_Museo, name="Página museo"),
+    url(r'^museos$', views.Pagina_Museos, name="Página museos"),
+    url(r'^(.*)/xml$', views.XML_Usuario, name="Museos del usuario"),
+    url(r'^(.*)$', views.Pagina_Usuario, name="Página de usuario")
 
 ]

@@ -60,12 +60,14 @@ h3
 {
 font-size: 1.7em;
 padding-right: 34px;
+background-image: url('db1.gif');
 }
 
 h4
 {
 font-size: 1.2em;
 padding-right: 28px;
+background-image: url('db2.gif');
 }
 
 .contentarea
@@ -264,9 +266,6 @@ vertical-align: middle;
 }
 
 #headerpic
-{
-background: #2B2B2B;
-}
 .banner
 {
     display: inline-block;
@@ -278,11 +277,10 @@ background: #2B2B2B;
 }
 .login
 {
-    color: #fff;
     float:right;
     width:100px;
     height:50px;
-    margin: 70px 140px 0 0;
+    margin: 30px 100px 0 0;
 }
 
 #menu
@@ -310,7 +308,6 @@ display: inline;
 {
 padding: 0.5em 1.0em 0.9em 1.0em;
 color: #fff;
-font-size: 150%;
 text-decoration: none;
 }
 

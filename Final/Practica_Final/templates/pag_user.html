@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<title>zenlike1.0 by nodethirtythree</title>
+<title>MuseosUrjc.org</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" type="text/css" href="{% static 'images/default.css' %}" />
@@ -18,14 +18,14 @@
 
 	<div id="header">
 		<div id="headercontent">
-			<h1>Infinity Stones</h1>
-			<h2>A free genocide by Thanos</h2>
+			<h1>Museos Ujrc .org</h1>
+			<h2>Web de información y opiniones sobre los museos de Madrid</h2>
 		</div>
 	</div>
 
 	<div id="headerpic">
 		<div class="banner">
-			 <img src="{% static 'images/banner.jpg' %}"/>
+			 <img src="{% static 'images/banner_museos.png' %}"/>
 		</div>
 		<div class = "login">
 			<h4>{{ login|safe }}</h4>
@@ -37,10 +37,7 @@
 			<li><a href="/">Home</a></li>
 			<li><a href="/museos">Museos</a></li>
 			<li><a href="/{{propietary|safe}}">Mi página</a></li>
-			<li><a href="http://as01.epimg.net/epik/imagenes/2018/04/04/portada/1522831716_650516_1522831975_noticia_normal.jpg">Basura</a></li>
-			<li><a href="https://www.google.es/search?q=polvo&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiVjPmmhP7aAhUBXBQKHRBCASgQ_AUICigB&biw=1231&bih=934">The Avengers</a></li>
-			<li><a href="http://www.didthanoskill.me/">Are you dead?</a></li>
-			<li><a href="#">About</a></li>
+			<li><a href="/about">About</a></li>
 		</ul>
 	</div>
 	<div id="menubottom"></div>
@@ -48,39 +45,20 @@
 
 	<div id="content">
 
-		<!-- Normal content: Stuff that's not going to be put in the left or right column. -->
-		<div id="normalcontent">
-			<h3><strong>Genocide </strong><span>by Thanos</span></h3>
-			<div class="contentarea">
-				<!-- Normal content area start -->
-				<p><br />"The end is near."<br />
-				<br />"Humans. They are not the cowering wretches we were promised. They stand. They are unruly, and therefore cannot be ruled. To challenge them is to court...Death."<br />
-				<br />
-				<br />"When I'm done, half of humanity will still exist. Perfectly balanced, as all things should be. I hope they remember you."<br />
-				</p>
-
-				<!-- Normal content area end -->
-			</div>
-		</div>
-
-
-		<div class="divider1"></div>
-
-
 		<!-- Primary content: Stuff that goes in the primary content column (by default, the left column) -->
-		<div id="primarycontainer">
+		<div id="primarycontainer" style = "background-color:{{ estilo_color }}">
 			<div id="primarycontent">
 				<!-- Primary content area start -->
 
 				<div class="post">
-					<center><h2>Página del vengador {{user|safe}}</h2></br>
+					<center><h2>Página del usuario  {{user|safe}}</h2></br>
 					<h3>{{titulo|safe}}</h3></center>
 				</div>
 
 				<div class="divider2"></div>
 
-				<div class="post">
-					 <h2>Museos bajo su protección: </h2>
+				<div class="post" style ="font-size: {{ estilo_tamaño }} ">
+					 <h2>Museos añadidos: </h2>
 					 <br />{{ museos|safe}}<br /><br />
 				</div>
 
@@ -100,25 +78,9 @@
 					<h2>Peticion: </h2>
 					    {{ peticion|safe }}
 					{% endblock %}
-			</div>
 
-			<div>
-				<h4>Nullam Dolore</h4>
-				<div class="contentarea">
-					<ul class="linklist">
-						<li><a href="#">Volutpat at varius sed</a></li>
-						<li><a href="#">Sollicitudin et arcu</a></li>
-						<li><a href="#">Vivamus viverra nullam</a></li>
-						<li><a href="#">Turpis vestibulum</a></li>
-						<li><a href="#">Sed etiam lorem ipsum</a></li>
-						<li><a href="#">Sit amet dolore nulla</a></li>
-						<li><a href="#">Facilisi sed tortor</a></li>
-						<li><a href="#">Aenean felis quisque</a></li>
-						<li><a href="#">Eros cras lobortis vel</a></li>
-						<li><a href="#">Purus in eget odio sapien</a></li>
-						<li><a href="#">Adipiscing blandit</a></li>
-					</ul>
-				</div>
+				<br><br>
+				<a href="/{{propietary|safe}}/xml">XML usuario</a>
 			</div>
 
 			<!-- Secondary content area end -->
@@ -128,7 +90,8 @@
 	</div>
 
 	<div id="footer">
-			<div class="left">&copy; 2006 Your Website Name. All rights reserved.</div>
+			<div class="left">&copy; 2018 MuseosURJC.org .Esta aplicación
+				utiliza datos del <a href = "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=118f2fdbecc63410VgnVCM1000000b205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default"> portal de datos </a> abiertos de la ciudad de Madrid</div>
 			<div class="right">Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
 	</div>
 
