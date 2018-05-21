@@ -17,6 +17,10 @@ Si no se esta logueado algunas funciones de la página no estarán disponibles, 
 
 ### Lista de funcionalidades opcionales que se hayan implementado:
 - Se ha añadido el favicon a la web
+- Se ha añadido el registro de usuarios
 
-### URL del v´ıdeo demostraci´on de la funcionalidad b´asica
+### URL del video demostración de la funcionalidad básica
 https://youtu.be/2fUfkUpLRv4
+
+### URL del video desmotración de la funcionalidad optativa
+https://youtu.be/0KDZkB4u-wU
